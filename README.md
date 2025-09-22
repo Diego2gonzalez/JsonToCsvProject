@@ -11,11 +11,10 @@ This repository contains all deliverables for the current Sprint and is organize
 
 | Folder | Description |
 |--------|-------------|
-| `src/main/java/JsonReader/` | Main Java code for JSON reading and CSV writing.<br>- `JsonReader.java` → JSON parsing logic.<br>- `CsvWriter.java` → CSV writing logic. |
-| `src/test/java/JsonReader/` *(tests branch)* | Unit and integration tests.<br>- `JsonReaderTest.java` → Tests JSON reading.<br>- `CsvWriterTest.java` → Tests CSV writing.<br>- `IntegrationTest.java` → Tests full JSON → CSV workflow. |
-| `src/test/resources/` | Sample JSON files used for tests:<br>- `user.json` → Valid JSON.<br>- `empty.json` → Empty JSON.<br>- `invalid.json` → Malformed JSON. |
-| `README.md` | Project documentation. |
-| `.gitignore` | Files and folders excluded from Git. |
+| `src/main/java/JsonReader/` | Main Java code for JSON reading and CSV writing.<br>- `JsonReader.java`<br>- `CsvWriter.java`|
+| `src/test/java/JsonReader/` *(tests branch)* | Unit and integration tests.<br>- `InvalidTest.java`<br>- `EmptyTest.java`|
+| `src/test/resources/` | Sample JSON files used for tests:<br>-`empty.json``invalid.json`|
+
 
 ---
 
@@ -66,5 +65,6 @@ Each test uses a separate JSON file in src/test/resources/ (user.json, empty.jso
 All classes and methods are documented with JavaDoc.
 
 The project is structured for easy maintenance and clear separation between production code and test code.
+
 
 
