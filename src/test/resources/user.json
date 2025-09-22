@@ -1,0 +1,9 @@
+{
+  "user":"Diegonzalez",
+  "firstName": "Diego",
+  "lastName": "Gonzalez",
+  "age" : 28,
+  "isAdmin": "true",
+  "phone": 4443332211
+
+}
