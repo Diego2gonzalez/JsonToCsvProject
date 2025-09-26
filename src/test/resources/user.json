@@ -1,9 +1,26 @@
-{
-  "user":"Diegonzalez",
-  "firstName": "Diego",
-  "lastName": "Gonzalez",
-  "age" : 28,
-  "isAdmin": "true",
-  "phone": 4443332211
+[
+  {
+    "user":"Diegonzalez",
+    "firstName": "Diego",
+    "lastName": "Gonzalez",
+    "age" : "28",
+    "isAdmin": "true",
+    "phone": "4443332211"
 
-}
+  },
+  {
+    "user":"tioJuan",
+    "firstName": "Juan",
+    "lastName": "Perez",
+    "age" : "283",
+    "isAdmin": "false",
+    "phone": "4433232211"
+  },
+  {
+    "user":"elJose",
+    "firstName": "Jose",
+    "lastName": "Garza",
+    "age" : "2823",
+    "isAdmin": "false",
+    "phone": "3311232211"
+  }]
