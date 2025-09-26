@@ -1,9 +1,23 @@
 # JsonToCsvProject
 
-## Project Overview
-**JsonToCsvProject** is a Java application designed to read JSON files using **Gson** and convert them into CSV files using **OpenCSV**.  
+---
 
-This repository contains all deliverables for the current Sprint and is organized for easy review.
+## Project Overview
+**JsonToCsvProject** is a Java desktop application designed to **read JSON files** and **convert them into CSV files**.
+
+The project uses **Gson** for JSON parsing and **OpenCSV** for CSV writing, ensuring a reliable and structured transformation process.
+
+
+---
+
+## Requirements and Compatibility
+
+- **Java Version:** 17
+- **Build Tool:** Maven
+- **Dependencies:**
+    - Gson (`com.google.gson`)
+    - OpenCSV (`com.opencsv.CSVWriter`)
+    - JUnit 5 (`org.junit.jupiter`)
 
 ---
 
@@ -11,61 +25,156 @@ This repository contains all deliverables for the current Sprint and is organize
 
 | Folder | Description |
 |--------|-------------|
-| `src/main/java/JsonReader/` | Main Java code for JSON reading and CSV writing.<br>- `JsonReader.java`<br>- `CsvWriter.java`|
-| `src/test/java/JsonReader/` *(tests branch)* | Unit and integration tests.<br>- `InvalidTest.java`<br>- `EmptyTest.java`|
-| `src/test/resources/` | Sample JSON files used for tests:<br>-`empty.json``invalid.json`|
-
-
+| `src/main/java/JsonReader/` | Main Java code for JSON reading and CSV writing. <br> - `JsonReader.java` <br> - `CsvWriter.java` <br> - `Main.java` |
+| `src/test/java/JsonReader/` | JUnit tests for validating JSON reading and CSV writing: <br> - `EmptyTest.java` <br> - `InvalidTest.java` |
+| `src/test/resources/` | Sample JSON files for demonstration and testing: <br> - `empty.json` <br> - `invalid.json` <br> - `user.json` |
 
 ---
 
-## Running the Project
+## Project Configuration
 
-### 1. Clone the repository
-```bash
-git clone https://github.com/yourUsername/JsonToCsvProject.git
-cd JsonToCsvProject
-
-2. Open and Build the Project
-
-Open the project in your IDE and build it to compile the code and resolve dependencies.
-
-3. Execute 
-
-Run JsonReader.java and CsvWriter to process JSON and CSV conversion.
-
-To change the input JSON file, modify the path in Main.java:
-
-Map<?, ?> userData = JsonReader.readJson("src/test/resources/user.json");
+- Input and output file paths are entered via console when running `Main.java`.
+- Example of configuring paths:
 
 
-To change the output CSV file:
+Enter JSON file path: src/test/resources/user.json
+Enter CSV file path to save: src/test/resources/user.csv
 
-CsvWriter.writeCsv("src/test/resources/user.csv", tempList);
+- You can replace the paths with your own JSON files to test different data.
 
-Running Tests (Optional)
+---
 
-Unit tests are located in the tests branch. They validate the JSON reading and CSV writing functionality under different scenarios.
+## JSON → CSV Conversion
 
-Steps:
+### Step 1: Reading JSON
+The program reads the JSON file using **Gson**.
 
-Switch to the tests branch:
+- **Single object** → converted into a `Map<String,Object>`.
+- **Array of objects** → each element converted into a `Map<String,Object>` and stored in a `List<Map<String,Object>>`.
 
-git checkout tests
+**Algorithm (simplified):**
+```text
+if JSON is object:
+    create a Map and add to List
+else if JSON is array:
+    for each element:
+        convert element to Map
+        add Map to List
+
+Step 2: Writing CSV
+
+Retrieve all keys from the first Map → these become the CSV headers.
+
+For each Map in the list:
+
+Iterate over the values in the same order as headers.
+
+Convert each value to a string.
+
+If the value is null, write an empty string "".
+
+Write the headers and rows to a CSV file using OpenCSV.
+
+Algorithm (simplified):
+
+headers = keys from first Map
+write headers to CSV
+
+for each Map in List:
+    row = []
+    for each header:
+        value = Map.get(header)
+        if value is null: value = ""
+        row.add(value)
+    write row to CSV
+
+Diagram of Flow (Textual)
+JSON File
+   │
+   ▼
+Read JSON with Gson
+   │
+   ▼
+Convert to Map/List
+   │
+   ▼
+Write CSV with OpenCSV
+   │
+   ▼
+CSV File
+
+Sample Input/Output
+
+Input JSON (user.json):
+
+[
+  {"name": "Alice", "age": 28, "city": "Paris"},
+  {"name": "Bob", "age": 32, "city": "Berlin"},
+  {"name": "Charlie", "age": null, "city": "London"}
+]
 
 
-Run the tests using your IDE or Maven:
+Generated CSV (user.csv):
+
+name,age,city
+Alice,28,Paris
+Bob,32,Berlin
+Charlie,,London
+
+Error Handling
+
+The program handles:
+
+Invalid JSON → prints an error message and exits gracefully.
+
+Empty JSON file → returns an empty list and prints a warning.
+
+File not found → displays the file path error to the user.
+
+This ensures robustness and reliable execution.
+
+JUnit Testing
+
+EmptyTest.java → validates that empty JSON files are handled correctly.
+
+InvalidTest.java → validates that invalid JSON files are handled gracefully.
+
+Tests cover:
+
+JSON reading for objects and arrays.
+
+CSV writing with correct headers and rows.
+
+Consistency of data and error handling.
+
+Run tests using Maven or IDE:
 
 mvn test
 
+Improvements from Previous Sprint
 
-Notes:
+Implemented full JSON → CSV transformation logic.
 
-Each test uses a separate JSON file in src/test/resources/ (user.json, empty.json, invalid.json).
+Documented algorithm in README and supporting PDF.
 
-All classes and methods are documented with JavaDoc.
+Added JavaDoc comments for all classes and methods.
 
-The project is structured for easy maintenance and clear separation between production code and test code.
+Validated program with sample JSON files including empty and invalid cases.
 
+Added JUnit tests for automated verification of functionality.
 
+References
 
+Gson Documentation
+
+OpenCSV Documentation
+
+JUnit 5 Documentation
+
+Notes
+
+Input/output paths are entered via console prompt.
+
+Algorithm handles arrays of objects and null values robustly.
+
+Project structure separates production code and test resources for clarity.
