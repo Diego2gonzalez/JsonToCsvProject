@@ -21,11 +21,6 @@ This ensures a reliable and structured transformation process.
     - OpenCSV (`com.opencsv.CSVWriter`)
     - JUnit 5 (`org.junit.jupiter`)
 
-> **Note:** If not using Maven, manually add the JARs:
-> - `gson-<version>.jar`
-> - `opencsv-<version>.jar`
-> - `junit-jupiter-<version>.jar`
-
 ---
 
 ## 3️⃣ Repository Structure
