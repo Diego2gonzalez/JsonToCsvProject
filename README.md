@@ -130,8 +130,6 @@ Invalid JSON → prints error and exits gracefully
 
 Empty JSON file → returns empty list and prints warning
 
-File not found → displays file path error
-
 Ensures robustness and reliable execution.
 
 8️⃣ JUnit Testing
@@ -148,9 +146,6 @@ CSV writing with correct headers & rows
 
 Data consistency & error handling
 
-Run tests using Maven:
-
-mvn test
 
 9️⃣ JavaDoc Documentation
 
