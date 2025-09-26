@@ -17,9 +17,9 @@ This ensures a reliable and structured transformation process.
 - **Java Version:** 17
 - **Build Tool:** Maven
 - **Dependencies:**
-    - Gson (`com.google.gson`)
-    - OpenCSV (`com.opencsv.CSVWriter`)
-    - JUnit 5 (`org.junit.jupiter`)
+    - Gson (`com.google.code.gson:gson:2.13.2`)
+    - OpenCSV (`com.opencsv:opencsv:5.12.0`)
+    - JUnit 5 (`org.junit.jupiter:junit-jupiter:5.10.0`)
 
 ---
 
