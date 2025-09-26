@@ -2,15 +2,17 @@
 
 ---
 
-## Project Overview
+## 1️⃣ Project Overview
 **JsonToCsvProject** is a Java desktop application designed to **read JSON files** and **convert them into CSV files**.
 
-The project uses **Gson** for JSON parsing and **OpenCSV** for CSV writing, ensuring a reliable and structured transformation process.
+- Uses **Gson** for JSON parsing.
+- Uses **OpenCSV** for CSV writing.
 
+This ensures a reliable and structured transformation process.
 
 ---
 
-## Requirements and Compatibility
+## 2️⃣ Requirements and Compatibility
 
 - **Java Version:** 17
 - **Build Tool:** Maven
@@ -19,43 +21,45 @@ The project uses **Gson** for JSON parsing and **OpenCSV** for CSV writing, ensu
     - OpenCSV (`com.opencsv.CSVWriter`)
     - JUnit 5 (`org.junit.jupiter`)
 
+> **Note:** If not using Maven, manually add the JARs:
+> - `gson-<version>.jar`
+> - `opencsv-<version>.jar`
+> - `junit-jupiter-<version>.jar`
+
 ---
 
-## Repository Structure
+## 3️⃣ Repository Structure
 
 | Folder | Description |
 |--------|-------------|
-| `src/main/java/JsonReader/` | Main Java code for JSON reading and CSV writing. <br> - `JsonReader.java` <br> - `CsvWriter.java` <br> - `Main.java` |
-| `src/test/java/JsonReader/` | JUnit tests for validating JSON reading and CSV writing: <br> - `EmptyTest.java` <br> - `InvalidTest.java` |
-| `src/test/resources/` | Sample JSON files for demonstration and testing: <br> - `empty.json` <br> - `invalid.json` <br> - `user.json` |
+| `src/main/java/JsonReader/` | Main Java code:<br>- `JsonReader.java`<br>- `CsvWriter.java`<br>- `Main.java` |
+| `src/test/java/JsonReader/` | JUnit tests:<br>- `EmptyTest.java`<br>- `InvalidTest.java` |
+| `src/test/resources/` | Sample JSON files:<br>- `empty.json`<br>- `invalid.json`<br>- `user.json` |
 
 ---
 
-## Project Configuration
+## 4️⃣ Project Configuration
 
-- Input and output file paths are entered via console when running `Main.java`.
-- Example of configuring paths:
-
-
+- Input/output file paths are entered via console when running `Main.java`.
+- Example:
+```text
 Enter JSON file path: src/test/resources/user.json
 Enter CSV file path to save: src/test/resources/user.csv
 
-- You can replace the paths with your own JSON files to test different data.
 
----
+Paths can be replaced to test different JSON files.
 
-## JSON → CSV Conversion
+5️⃣ JSON → CSV Conversion
+Step 1: Reading JSON
 
-### Step 1: Reading JSON
-The program reads the JSON file using **Gson**.
+Single object → converted into a Map<String,Object>
 
-- **Single object** → converted into a `Map<String,Object>`.
-- **Array of objects** → each element converted into a `Map<String,Object>` and stored in a `List<Map<String,Object>>`.
+Array of objects → each element converted into a Map<String,Object> and stored in a List<Map<String,Object>>
 
-**Algorithm (simplified):**
-```text
+Algorithm:
+
 if JSON is object:
-    create a Map and add to List
+    create Map and add to List
 else if JSON is array:
     for each element:
         convert element to Map
@@ -63,19 +67,19 @@ else if JSON is array:
 
 Step 2: Writing CSV
 
-Retrieve all keys from the first Map → these become the CSV headers.
+Retrieve headers from the first Map → CSV headers
 
 For each Map in the list:
 
-Iterate over the values in the same order as headers.
+Iterate over headers
 
-Convert each value to a string.
+Convert values to strings
 
-If the value is null, write an empty string "".
+If null → write empty string ""
 
-Write the headers and rows to a CSV file using OpenCSV.
+Write headers and rows using OpenCSV
 
-Algorithm (simplified):
+Algorithm:
 
 headers = keys from first Map
 write headers to CSV
@@ -88,7 +92,9 @@ for each Map in List:
         row.add(value)
     write row to CSV
 
-Diagram of Flow (Textual)
+
+Flow Diagram (Textual)
+
 JSON File
    │
    ▼
@@ -103,7 +109,7 @@ Write CSV with OpenCSV
    ▼
 CSV File
 
-Sample Input/Output
+6️⃣ Sample Input / Output
 
 Input JSON (user.json):
 
@@ -121,60 +127,66 @@ Alice,28,Paris
 Bob,32,Berlin
 Charlie,,London
 
-Error Handling
+7️⃣ Error Handling
 
-The program handles:
+Program handles:
 
-Invalid JSON → prints an error message and exits gracefully.
+Invalid JSON → prints error and exits gracefully
 
-Empty JSON file → returns an empty list and prints a warning.
+Empty JSON file → returns empty list and prints warning
 
-File not found → displays the file path error to the user.
+File not found → displays file path error
 
-This ensures robustness and reliable execution.
+Ensures robustness and reliable execution.
 
-JUnit Testing
+8️⃣ JUnit Testing
 
-EmptyTest.java → validates that empty JSON files are handled correctly.
+EmptyTest.java → validates empty JSON handling
 
-InvalidTest.java → validates that invalid JSON files are handled gracefully.
+InvalidTest.java → validates invalid JSON handling
 
 Tests cover:
 
-JSON reading for objects and arrays.
+JSON reading (objects & arrays)
 
-CSV writing with correct headers and rows.
+CSV writing with correct headers & rows
 
-Consistency of data and error handling.
+Data consistency & error handling
 
-Run tests using Maven or IDE:
+Run tests using Maven:
 
 mvn test
 
-Improvements from Previous Sprint
+9️⃣ JavaDoc Documentation
 
-Implemented full JSON → CSV transformation logic.
+All classes and methods include JavaDoc:
 
-Documented algorithm in README and supporting PDF.
+Purpose of class/method
 
-Added JavaDoc comments for all classes and methods.
+Parameters & return values
 
-Validated program with sample JSON files including empty and invalid cases.
+Example usage (if applicable)
 
-Added JUnit tests for automated verification of functionality.
+Supports maintainability and professional documentation.
 
-References
+10️⃣ Improvements from Previous Sprint
 
-Gson Documentation
+Full JSON → CSV transformation implemented
 
-OpenCSV Documentation
+Validated program with sample JSON (including empty & invalid files)
 
-JUnit 5 Documentation
+Added JUnit tests for automated verification
 
-Notes
+11️⃣ References
 
-Input/output paths are entered via console prompt.
+- [Gson Documentation](https://github.com/google/gson)  
+- [OpenCSV Documentation](http://opencsv.sourceforge.net/)  
+- [JUnit 5 Documentation](https://junit.org/junit5/docs/current/user-guide/)
 
-Algorithm handles arrays of objects and null values robustly.
+12️⃣ Notes
 
-Project structure separates production code and test resources for clarity.
+Input/output paths via console prompt
+
+Handles arrays of objects & null values
+
+Project separates production code and test resources for clarity
