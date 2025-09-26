@@ -155,9 +155,6 @@ Purpose of class/method
 
 Parameters & return values
 
-Example usage (if applicable)
-
-Supports maintainability and professional documentation.
 
 10️⃣ Improvements from Previous Sprint
 
